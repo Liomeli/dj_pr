@@ -4,10 +4,13 @@ from django.http import HttpResponse
 from django.template import loader, Context
 
 def homepage(request): #объект, который содержит всю информацию о запросе, объект запроса
+	# url = reverse('greet', kwargs = {'name' : 'Lilu'})
 	c = Context({'a' : 'Lusinda', 'b' : 'Lilu'})
 	name = 'Applic/home.html'
 	return render(request, name, c)
 
+# def greet(request, name = None):
+# 	return render(request, 'Applic/greet.html', {'name' : name})
 
 	#то же самое, что выше
 	# tpl = loader.get_template('Applic/home.html')

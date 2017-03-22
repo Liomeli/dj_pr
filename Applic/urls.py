@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-	url('applic/$', views.homepage)
+	url('home/$', views.homepage)
 ]
 
 
