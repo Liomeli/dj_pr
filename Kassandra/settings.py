@@ -30,7 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [#что умеет сайт, импорт доп.библиотек
+INSTALLED_APPS = [#что умеет сайт, импорт доп.библиотек, добавить свое приложение, ищет сверху вниз
+    'Applic.apps.ApplicConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,10 +53,10 @@ MIDDLEWARE = [#обработка запроса и ответа сервера
 ROOT_URLCONF = 'Kassandra.urls'#адрес корневых настроек адресов сайта
 
 TEMPLATES = [#библиотеки для обработки шаблонов
-    {#здесь можно подключить другой шаблонизатор, например, jinja
+    {#здесь можно подключить другой шаблонизатор, например, jinja, можно изменить папку, в которой будут сохр
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        'APP_DIRS': True,
+        'APP_DIRS': True, #если True, то шаблоны html будут автоматически искаться в папке templates
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
