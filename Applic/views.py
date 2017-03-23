@@ -1,11 +1,26 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect #аналог нижнего редирект
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from django.template import loader, Context
+from .models import Post
+
 
 def homepage(request): #объект, который содержит всю информацию о запросе, объект запроса
 	# url = reverse('greet', kwargs = {'name' : 'Lilu'})
-	c = Context({'a' : 'Lusinda', 'b' : 'Lilu'})
+	#error = 'no!'
+	#request.GET.get() #request.GET.get('a') получать данные из формы
+	if request.method == 'POST':
+		#можно сделать через try-except
+		errors = []
+		title = request.POST.get('title')
+		content = request.POST.get('content')
+		if not title or not content:
+			errors.append('Empty field!!!')
+		else:
+			post = Post(title = title, content = content)
+			post.save()
+			return HttpResponseRedirect('/home')
+	c = Context({'a' : 'Lusinda', 'b' : 'Lilu'}) #'error' : error} 'request' : request.GET.get('title', None)
 	name = 'Applic/home.html'
 	return render(request, name, c)
 

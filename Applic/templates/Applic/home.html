@@ -18,12 +18,13 @@
 	</head>
 	<body>
 		<h1 class="text-center">Hello, {{a}}</h1>
+<!-- 		<h2 style="color: red">{{ error }}</h2> -->
 
-
-		<form action="." method="post">
-		{% csrf_token %}
-		<input type="text" name="A" padding-left = 10px>
-		<input type="submit" name="submit">
+		<form method="POST">
+			{% csrf_token %}
+			<input type="text" name="title" required maxlength="50" value="{{ request.POST.title }}""><br> <!-- value="{{ request.GET.title }} -->
+			<textarea name = "content" required minlength="10">{{request.POST.content}}</textarea><br>
+			<input type="submit" name="submit" value="Save" required>
 		</form>
 		<!-- jQuery -->
 		<script src="http//code.jquery.com/jquery.js"></script>
