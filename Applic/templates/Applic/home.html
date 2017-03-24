@@ -19,13 +19,41 @@
 	<body>
 		<h1 class="text-center">Hello, {{a}}</h1>
 <!-- 		<h2 style="color: red">{{ error }}</h2> -->
-
+<!-- 		<h2>Count = {{ ob }}</h2> -->
 		<form method="POST">
 			{% csrf_token %}
 			<input type="text" name="title" required maxlength="50" value="{{ request.POST.title }}""><br> <!-- value="{{ request.GET.title }} -->
 			<textarea name = "content" required minlength="10">{{request.POST.content}}</textarea><br>
 			<input type="submit" name="submit" value="Save" required>
 		</form>
+		<table width="100%" border="1">
+			{% for el in ob %}
+			<tr>
+				<td>
+				{{ el.id }}
+				</td>
+				<td>
+				{{ el.title }}
+				</td>
+				<td>
+				{{ el.content }}
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+	<!-- 	<div>
+		{% for el in ob%}
+		{{ el }}<br>
+		{% endfor %}
+		</div>
+ -->
+
+
+		<!-- <h2>
+			{% for p in all %}
+			Post: {{ p }}<br>
+			{% endfor %}
+		</h2> -->
 		<!-- jQuery -->
 		<script src="http//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->

@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 from django.template import loader, Context
 from .models import Post
+from django.db.models import Q, F
 
 
 def homepage(request): #объект, который содержит всю информацию о запросе, объект запроса
@@ -10,7 +11,7 @@ def homepage(request): #объект, который содержит всю и�
 	#error = 'no!'
 	#request.GET.get() #request.GET.get('a') получать данные из формы
 	if request.method == 'POST':
-		#можно сделать через try-except
+		#можно сделать через try-except request.POST['title']
 		errors = []
 		title = request.POST.get('title')
 		content = request.POST.get('content')
@@ -20,7 +21,15 @@ def homepage(request): #объект, который содержит всю и�
 			post = Post(title = title, content = content)
 			post.save()
 			return HttpResponseRedirect('/home')
-	c = Context({'a' : 'Lusinda', 'b' : 'Lilu'}) #'error' : error} 'request' : request.GET.get('title', None)
+			# ob = Post.objects.count()
+	ob = Post.objects.all()
+	c = Context(
+	{
+	'a' : 'Lusinda', 
+	'b' : 'Lilu', 
+	'ob' : ob,
+	}
+	) #'error' : error} 'request' : request.GET.get('title', None)
 	name = 'Applic/home.html'
 	return render(request, name, c)
 
@@ -54,6 +63,7 @@ def homepage(request): #объект, который содержит всю и�
 #регулярные выражения; именованные группы
 #имена аргументов должны совпадать с именами именованных групп
 #reverse_lazy
+#lazy load
 
 
 
