@@ -5,6 +5,11 @@ from django.template import loader, Context
 from .models import Post
 from django.db.models import Q, F
 
+import django.forms as forms
+from Kassandra.settings import BASE_DIR
+#BASE_DIR + 'Applic/static'
+
+
 
 def homepage(request): #объект, который содержит всю информацию о запросе, объект запроса
 	# url = reverse('greet', kwargs = {'name' : 'Lilu'})
@@ -32,6 +37,13 @@ def homepage(request): #объект, который содержит всю и�
 	) #'error' : error} 'request' : request.GET.get('title', None)
 	name = 'Applic/home.html'
 	return render(request, name, c)
+
+
+
+
+
+
+
 
 # def greet(request, name = None):
 # 	return render(request, 'Applic/greet.html', {'name' : name})

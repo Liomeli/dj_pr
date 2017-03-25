@@ -43,3 +43,28 @@
 #title = F('content')
 #если нужно получить одну колонку - Post.objects....().values('fieldname')
 #aggregate. annotate
+
+
+#image добавляем в модели
+#редактируем html, форма только методом POST + файл кодируется
+#enctype = "multipart/form-data"
+#request.FILES['fieldname']
+#form = PostForm(request.POST, request.FILES)
+#def get_image_url() - метод поста
+#читать документацию
+
+#class-based view
+from django.views.generic import View
+class Home(View):
+
+	def get(self, request):
+		return render (request, 'home.html')
+
+	def post(self, request):
+		return render (request, 'home.html')
+
+#urls - вместо функции homepage - класс Home.as_view()
+#TemplateView, RedirectView, DetailedView, ListView, CreateView,
+#EditView, UpdateView
+#heroku.com - выгрузка сайтаб хостинг
+#доменное имя herokuapp.com
